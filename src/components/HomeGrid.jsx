@@ -19,6 +19,7 @@ function HomeGrid({Img,Heading,Summery,URL}) {
             <span> 4 min read </span>
           </div>
         </Link>
+        
         <a href="#" className="block mt-2 space-y-6">
           <h3 className="text-2xl font-semibold leading-none tracking-tighter text-neutral-600">Typography on app.</h3>
           <p className="text-lg font-normal text-gray-500">Filling text so you can see how it looks like with text. Did I said text?</p>

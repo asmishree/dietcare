@@ -8,6 +8,8 @@ import Login from "./pages/auth/Login";
 import Footer from "./components/Footer";
 import Post from "./pages/Post";
 import SignUp from "./pages/auth/SignUp";
+import BmiCalculator from "./pages/BMI";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ function App() {
 
   return (
     <div>
-      <Header/>
+      <Header />
       <Toaster/>
       <div className="min-h-[80vh]">
       <Routes >
@@ -33,14 +35,15 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/post" element={<Post />} />
-        {/* <Route path="/bmi" element={<Bmi />} />
+        <Route path="/bmi" element={<BmiCalculator />} />
+        {/* 
         <Route path="/dietplan" element={<Dietplan />} />
         <Route path="/bmr" element={<Bmr />} />
         <Route path="/Bodyfat" element={<Bodyfat />} />
         <Route path="/profile" element={<Profile />} />
         
         <Route path="/signup" element={<Signup />} /> */}
-        <Route path="*" element={<h1>404 not found</h1>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
       </div>
       <Footer/>
