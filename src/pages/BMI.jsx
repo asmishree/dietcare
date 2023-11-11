@@ -10,8 +10,8 @@ function BmiCalculator() {
   const [idealWeight, setIdealWeight] = useState(null);
   const [bmiCategory, setBmiCategory] = useState("");
   const calculateBmi = () => {
-    if (!height || !weight) {
-      toast.error("Please enter valid height and weight.");
+    if (!height || !weight ||!age) {
+      toast.error("Please enter all fields.");
       // alert();
       return;
     }
@@ -113,14 +113,14 @@ function BmiCalculator() {
       <button className="mybtt" onClick={calculateBmi}>
         Calculate
       </button>
-      <div className="result">
+      {bmi?(<div className="result">
         <h2>Result:</h2>
         <div>
           <p>BMI: {bmi?.toFixed(2) | "0"}</p>
           <p>Ideal Weight: {idealWeight?.toFixed(2) | "NA"} kg</p>
           <p>BMI Category: {bmiCategory ? bmiCategory : "NA"}</p>
         </div>
-      </div>
+      </div>):("")}
     </div>
   );
 }

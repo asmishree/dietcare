@@ -10,8 +10,8 @@ const BMRCalculator = () => {
   const [result, setResult] = useState(null);
 
   const calculateBMR = () => {
-    if (weight === '' || height === '') {
-        toast.error('Please enter valid height and weight.');
+    if (weight === '' || height === ''|| age=="") {
+        toast.error('Please enter all fields.');
         return;
       }
 
@@ -81,7 +81,7 @@ const BMRCalculator = () => {
       <button onClick={calculateBMR} className='mybtt'>Calculate BMR</button>
       
       {result !== null && (
-        <div>
+        <div className="result">
           <h2>Result:</h2>
           <p>Your BMR is: {result.toFixed(2)} calories/day</p>
         </div>
