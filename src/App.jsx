@@ -36,11 +36,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/post" element={<Post />} />
+        <Route path="/post/:id" element={<Post />} />
         <Route path="/bmi" element={<BmiCalculator />} />
         <Route path="/bmr" element={<BMR />} />
         <Route path="/bodyfat" element={<BodyFatCalculator />} />
-        
+
         {/* <Route path="/dietplan" element={<Dietplan />} /> */}
 
         <Route path="*" element={<NotFound/>} />
