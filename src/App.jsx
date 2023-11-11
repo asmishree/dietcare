@@ -40,13 +40,9 @@ function App() {
         <Route path="/bmi" element={<BmiCalculator />} />
         <Route path="/bmr" element={<BMR />} />
         <Route path="/bodyfat" element={<BodyFatCalculator />} />
-        {/* 
-        <Route path="/dietplan" element={<Dietplan />} />
-   
         
-        <Route path="/profile" element={<Profile />} />
-        
-        <Route path="/signup" element={<Signup />} /> */}
+        {/* <Route path="/dietplan" element={<Dietplan />} /> */}
+
         <Route path="*" element={<NotFound/>} />
       </Routes>
       </div>
