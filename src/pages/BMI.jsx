@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 function BmiCalculator() {
-  const [gender, setGender] = useState('male');
-  const [age, setAge] = useState('');
-  const [height, setHeight] = useState('');
-  const [weight, setWeight] = useState('');
+  const [gender, setGender] = useState("male");
+  const [age, setAge] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
   const [bmi, setBmi] = useState(null);
   const [idealWeight, setIdealWeight] = useState(null);
-  const [bmiCategory, setBmiCategory] = useState('');
-
+  const [bmiCategory, setBmiCategory] = useState("");
   const calculateBmi = () => {
     if (!height || !weight) {
-      alert('Please enter valid height and weight.');
+      toast.error("Please enter valid height and weight.");
+      // alert();
       return;
     }
 
@@ -21,20 +22,20 @@ function BmiCalculator() {
     let calculatedIdealWeight;
     let calculatedBmiCategory;
 
-    if (gender === 'male') {
+    if (gender === "male") {
       calculatedIdealWeight = 22 * (heightInMeters * heightInMeters);
-    } else if (gender === 'female') {
+    } else if (gender === "female") {
       calculatedIdealWeight = 21 * (heightInMeters * heightInMeters);
     }
 
     if (calculatedBmi < 18.5) {
-      calculatedBmiCategory = 'Underweight';
+      calculatedBmiCategory = "Underweight";
     } else if (calculatedBmi >= 18.5 && calculatedBmi < 24.9) {
-      calculatedBmiCategory = 'Normal Weight';
+      calculatedBmiCategory = "Normal Weight";
     } else if (calculatedBmi >= 24.9 && calculatedBmi < 29.9) {
-      calculatedBmiCategory = 'Overweight';
+      calculatedBmiCategory = "Overweight";
     } else {
-      calculatedBmiCategory = 'Obese';
+      calculatedBmiCategory = "Obese";
     }
 
     setBmi(calculatedBmi);
@@ -45,16 +46,16 @@ function BmiCalculator() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
-      case 'gender':
+      case "gender":
         setGender(value);
         break;
-      case 'age':
+      case "age":
         setAge(value);
         break;
-      case 'height':
+      case "height":
         setHeight(value);
         break;
-      case 'weight':
+      case "weight":
         setWeight(value);
         break;
       default:
@@ -63,35 +64,63 @@ function BmiCalculator() {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h1>BMI Calculator</h1>
-      <div>
-        <label>Gender:</label>
-        <select name="gender" value={gender} onChange={handleChange}>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
-      <div>
-        <label>Age:</label>
-        <input type="number" name="age" value={age} onChange={handleChange} />
-      </div>
-      <div>
-        <label>Height (cm):</label>
-        <input type="number" name="height" value={height} onChange={handleChange} />
-      </div>
-      <div>
-        <label>Weight (kg):</label>
-        <input type="number" name="weight" value={weight} onChange={handleChange} />
-      </div>
-      <button onClick={calculateBmi}>Calculate BMI</button>
-      {bmi && idealWeight && (
+      <div className="grid-box">
         <div>
-          <p>BMI: {bmi.toFixed(2)}</p>
-          <p>Ideal Weight: {idealWeight.toFixed(2)} kg</p>
-          <p>BMI Category: {bmiCategory}</p>
+          <label>Gender:</label>
+          <select
+            name="gender"
+            value={gender}
+            onChange={handleChange}
+            className="w-[100%]"
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
-      )}
+        <div>
+          <label>Age:</label>
+          <input
+            type="number"
+            name="age"
+            value={age}
+            onChange={handleChange}
+            placeholder="between 2 yrs 120 yrs"
+          />
+        </div>
+        <div>
+          <label>Height (cm):</label>
+          <input
+            type="number"
+            name="height"
+            value={height}
+            onChange={handleChange}
+            placeholder="in cm"
+          />
+        </div>
+        <div>
+          <label>Weight (kg):</label>
+          <input
+            type="number"
+            name="weight"
+            value={weight}
+            onChange={handleChange}
+            placeholder="in Kg"
+          />
+        </div>
+      </div>
+      <button className="mybtt" onClick={calculateBmi}>
+        Calculate
+      </button>
+      <div className="result">
+        <h2>Result:</h2>
+        <div>
+          <p>BMI: {bmi?.toFixed(2) | "0"}</p>
+          <p>Ideal Weight: {idealWeight?.toFixed(2) | "NA"} kg</p>
+          <p>BMI Category: {bmiCategory ? bmiCategory : "NA"}</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -10,6 +10,8 @@ import Post from "./pages/Post";
 import SignUp from "./pages/auth/SignUp";
 import BmiCalculator from "./pages/BMI";
 import NotFound from "./pages/NotFound";
+import BMR from "./pages/BMR";
+import BodyFatCalculator from "./pages/BodyFat";
 
 function App() {
   const navigate = useNavigate();
@@ -36,10 +38,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/post" element={<Post />} />
         <Route path="/bmi" element={<BmiCalculator />} />
+        <Route path="/bmr" element={<BMR />} />
+        <Route path="/bodyfat" element={<BodyFatCalculator />} />
         {/* 
         <Route path="/dietplan" element={<Dietplan />} />
-        <Route path="/bmr" element={<Bmr />} />
-        <Route path="/Bodyfat" element={<Bodyfat />} />
+   
+        
         <Route path="/profile" element={<Profile />} />
         
         <Route path="/signup" element={<Signup />} /> */}

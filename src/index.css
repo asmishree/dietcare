@@ -64,3 +64,101 @@
     height: 100%;
     object-fit: cover;
   }
+
+  input{
+    padding: 10px 20px;
+    background-color: #F9FAFB;
+    outline: none;
+    border-radius: 5px;
+  }
+
+  select{
+    padding: 10px 20px;
+    background-color: #F9FAFB;
+    outline: none;
+    border-radius: 5px;
+  }
+
+  input:focus,select:focus{
+    outline: 2px solid #cbd5e0;
+    transition: .1s;
+  }
+
+  input::placeholder {
+    color: #cbd5e0;
+  }
+
+  .mybtt{
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #2563eb; 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    color: #ffffff;
+    outline: none;
+    width: 100%;
+    margin: 20px 0;
+   
+  }
+
+  .mybtt:focus{
+    padding: 10px 20px;
+    border: 2px solid #fff;
+  }
+
+  label{
+    display: block;
+    font-size: 1rem;
+  font-weight: 500;
+  color: #4a5568;
+  margin: 10px 0;
+  }
+
+  .main-container{
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .main-container h1{
+    font-size: xx-large;
+    font-weight: 600;
+    padding: 50px 0;
+  }
+
+  .grid-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .grid-box select,input{
+    width: 100%;
+  }
+
+  .result{
+    font-size: medium;
+    font-weight: 500;
+  }
+
+  .result h2{
+    font-size: x-large;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+
+  @media (max-width: 480px) {
+
+    .grid-box{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0px;
+    }
+
+    .main-container h1{
+      font-size: xx-large;
+      text-align: center;
+    }
+    
+  }
