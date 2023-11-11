@@ -10,14 +10,13 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
-const products = [
-  { name: 'BMI Calculator', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+const calculater = [
+  { name: 'BMI Calculator', description: 'Get a better understanding of your traffic', href: '/bmi', icon: ChartPieIcon },
+  { name: 'BMR Calculator', description: 'Speak directly to your customers', href: '/bmr', icon: CursorArrowRaysIcon },
+  { name: 'Body Fat', description: 'Your customers’ data will be safe and secure', href: '/bodyfat', icon: FingerPrintIcon },
 ]
 
 function classNames(...classes) {
@@ -25,7 +24,15 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  let navigate = useNavigate();
+  const authToken = localStorage.getItem("authToken");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/");
+    toast.success("Logout Success")
+  };
 
   return (
     <header className="bg-white sticky top-0 z-10">
@@ -50,7 +57,7 @@ export default function Example() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+            Calculaters
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
@@ -65,7 +72,7 @@ export default function Example() {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  {products.map((item) => (
+                  {calculater.map((item) => (
                     <div
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -74,10 +81,10 @@ export default function Example() {
                         <item.icon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-900">
+                        <Link to={item.href} className="block font-semibold text-gray-900">
                           {item.name}
                           <span className="absolute inset-0" />
-                        </a>
+                        </Link>
                         <p className="mt-1 text-gray-600">{item.description}</p>
                       </div>
                     </div>
@@ -100,8 +107,11 @@ export default function Example() {
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         <div>
+        {!authToken ? (
       <Link to={"/login"}>
       <button className="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Login</button></Link>
+
+) : (<button className="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" onClick={handleLogout}>Logout</button>)}
       </div>
         </div>
       </nav>
@@ -109,14 +119,14 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
                 alt=""
               />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -133,7 +143,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Product
+                      Calculaters
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
                           aria-hidden="true"
@@ -143,32 +153,20 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <a
-                  href="#"
+                <Link
+                  to="/about"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   About
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Company
-                </a>
+                </Link>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
+                <Link
+                  to="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in
-                </a>
+                </Link>
               </div>
             </div>
           </div>
