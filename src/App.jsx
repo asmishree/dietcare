@@ -17,15 +17,27 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const allowedUrls = ["/", "/login","/signup"];
+  const allowedUrls = ["/", "/login", "/signup", "/post/:id"];
 
-  // useEffect(() => {
-  //   const isLoggedIn = localStorage.getItem("authToken");
-  //   if (!isLoggedIn && !allowedUrls.includes(location.pathname)) {
-  //     navigate("/login");
-  //     toast.error("please login first")
-  //   }
-  // }, [location, navigate]);
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("authToken");
+  
+    const isAllowed = allowedUrls.some((url) => {
+      if (url.includes('/:id')) {
+        const regex = new RegExp(`^${url.replace('/:id', '(.+)')}$`);
+        return regex.test(location.pathname);
+      }
+   
+      return url === location.pathname;
+    });
+  
+    if (!isLoggedIn && !isAllowed) {
+      navigate("/login");
+      toast.error("Please login first");
+    }
+  }, [location, navigate]);
+  
+  
 
   return (
     <div>

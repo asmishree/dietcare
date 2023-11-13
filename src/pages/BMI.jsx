@@ -12,7 +12,6 @@ function BmiCalculator() {
   const calculateBmi = () => {
     if (!height || !weight ||!age) {
       toast.error("Please enter all fields.");
-      // alert();
       return;
     }
 

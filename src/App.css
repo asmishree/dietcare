@@ -1,28 +1,62 @@
-.navbar-main{
+.blog-title{
     display: flex;
-    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.nav-links{
-    display: flex;
-    gap: 10px;
-}
-
-.nav-links a{
-    color: rgba(0, 0, 0, 0.8);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.nav-links a:hover{
-    border-bottom: 2px solid blue;
-}
-
-.nav-links a.active {
-    border-bottom: 2px solid blue;
+.blog-title h1{
+    font-size: 3rem;
     font-weight: 600;
+}
+
+.blog-body{
+    width: 95%;
+    margin: auto;
+}
+
+.blog-body img {
+    width: 100vw;
+    height: 56.25vw;
+    object-fit: cover;
+    object-position: center center;
+    margin: 50px 0;
+}
+
+.blog-description{
+    font-size: 1.2rem;
+    width: 80%;
+    margin: auto;
+}
+
+.slidermain {
+    position: relative;
+    height: 40vw;
   }
-  
+  .slidermain img {
+    width: 100vw;
+    height: 40vw;
+    object-fit: cover; 
+    object-position: top;
+  }
+  .myslider {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+  }
+  .text-slide{
+    position: absolute;
+    width: 50vw;
+    left: 25%;
+    top: 25%;
+    color: white;
+    text-align: center;
+  }
 
-
+  .text-slide h2{
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 20px;
   
+  }

@@ -7,7 +7,6 @@ import API from "../API";
 function Home() {
   const [blogData, setBlogData] = useState([]);
   const blogs = blogData;
-  console.log(blogs)
   useEffect(() => {
     const fetchData = async () => {
       try {
