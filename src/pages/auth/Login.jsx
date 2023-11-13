@@ -1,8 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {FcGoogle} from 'react-icons/fc'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import API from '../../API';
 
 function Login() {
+    let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    const { data } = await axios.post(
+      `${API}/users/login`,
+      {
+        email,
+        password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    if (data.success === true) {
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("authToken", data.authToken);
+      navigate("/");
+     toast.success(data.message);
+    } else {
+      toast.error(data.message);
+    }
+  };
   return (
     <div className="flex flex-col justify-center flex-1 px-4 py-12 overflow-hidden sm:px-6 lg:flex-none lg:px-20 xl:px-24">
     <div className="w-full max-w-xl mx-auto lg:w-96">
@@ -12,18 +43,18 @@ function Login() {
 
         <div className="mt-8">
             <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label for="email" className="block text-sm font-medium text-neutral-600"> Email address </label>
                         <div className="mt-1">
-                            <input id="email" name="email" type="email" autocomplete="email" required="" placeholder="Your Email" className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"/>
+                            <input id="email" name="email" type="email" autocomplete="email" required placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300" />
                         </div>
                     </div>
 
                     <div className="space-y-1">
                         <label for="password" className="block text-sm font-medium text-neutral-600"> Password </label>
                         <div className="mt-1">
-                            <input id="password" name="password" type="password" autocomplete="current-password" required="" placeholder="Your Password" className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"/>
+                            <input id="password" name="password" type="password" autocomplete="current-password" required="" placeholder="Your Password" value={password} onChange={(e) => setPassword(e.target.value)} className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"/>
                         </div>
                     </div>
 

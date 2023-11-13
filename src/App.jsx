@@ -8,39 +8,54 @@ import Login from "./pages/auth/Login";
 import Footer from "./components/Footer";
 import Post from "./pages/Post";
 import SignUp from "./pages/auth/SignUp";
+import BmiCalculator from "./pages/BMI";
+import NotFound from "./pages/NotFound";
+import BMR from "./pages/BMR";
+import BodyFatCalculator from "./pages/BodyFat";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const allowedUrls = ["/", "/login","/signup"];
+  const allowedUrls = ["/", "/login", "/signup", "/post/:id"];
 
-  // useEffect(() => {
-  //   const isLoggedIn = localStorage.getItem("authToken");
-  //   if (!isLoggedIn && !allowedUrls.includes(location.pathname)) {
-  //     navigate("/login");
-  //     toast.error("please login first")
-  //   }
-  // }, [location, navigate]);
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("authToken");
+  
+    const isAllowed = allowedUrls.some((url) => {
+      if (url.includes('/:id')) {
+        const regex = new RegExp(`^${url.replace('/:id', '(.+)')}$`);
+        return regex.test(location.pathname);
+      }
+   
+      return url === location.pathname;
+    });
+  
+    if (!isLoggedIn && !isAllowed) {
+      navigate("/login");
+      toast.error("Please login first");
+    }
+  }, [location, navigate]);
+  
+  
 
   return (
     <div>
-      <Header/>
+      <Header />
       <Toaster/>
       <div className="min-h-[80vh]">
       <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/post" element={<Post />} />
-        {/* <Route path="/bmi" element={<Bmi />} />
-        <Route path="/dietplan" element={<Dietplan />} />
-        <Route path="/bmr" element={<Bmr />} />
-        <Route path="/Bodyfat" element={<Bodyfat />} />
-        <Route path="/profile" element={<Profile />} />
-        
-        <Route path="/signup" element={<Signup />} /> */}
-        <Route path="*" element={<h1>404 not found</h1>} />
+        <Route path="/post/:id" element={<Post />} />
+        <Route path="/bmi" element={<BmiCalculator />} />
+        <Route path="/bmr" element={<BMR />} />
+        <Route path="/bodyfat" element={<BodyFatCalculator />} />
+
+        {/* <Route path="/dietplan" element={<Dietplan />} /> */}
+
+        <Route path="*" element={<NotFound/>} />
       </Routes>
       </div>
       <Footer/>
