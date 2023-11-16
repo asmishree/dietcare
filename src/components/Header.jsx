@@ -14,9 +14,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 const calculater = [
-  { name: 'BMI Calculator', description: 'Get a better understanding of your traffic', href: '/bmi', icon: ChartPieIcon },
-  { name: 'BMR Calculator', description: 'Speak directly to your customers', href: '/bmr', icon: CursorArrowRaysIcon },
-  { name: 'Body Fat', description: 'Your customers’ data will be safe and secure', href: '/bodyfat', icon: FingerPrintIcon },
+  { name: 'BMI Calculator', description: 'Calculation of your Body Ratio', href: '/bmi', icon: ChartPieIcon },
+  { name: 'BMR Calculator', description: 'Calculate your Basal Metabolic Rate', href: '/bmr', icon: CursorArrowRaysIcon },
+  { name: 'Body Fat', description: 'Estimate your total Body Fat Content ', href: '/bodyfat', icon: FingerPrintIcon },
 ]
 
 function classNames(...classes) {
@@ -57,7 +57,7 @@ export default function Example() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-            Calculaters
+            calculators
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
@@ -72,7 +72,7 @@ export default function Example() {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  {calculater.map((item) => (
+                  {calculator.map((item) => (
                     <div
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -96,7 +96,7 @@ export default function Example() {
           </Popover>
 
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Dietplane
+            Dietplan
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             About
@@ -143,7 +143,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                      Calculaters
+                      Calculators
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
                           aria-hidden="true"
