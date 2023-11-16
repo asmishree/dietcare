@@ -41,7 +41,7 @@ const formattedDate = new Date(blog?.createdAt).toLocaleString("en-US", options)
         <img src={blog?.img} />
 
         <div className="container m-auto">
-          <h2 className="py-10 text-xl font-semibold">
+          <h2 className="py-10 text-3xl font-semibold">
             {blog?.summery}
           </h2>
           <div className="blog-description" dangerouslySetInnerHTML={{ __html: blog?.description }} />

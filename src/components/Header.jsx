@@ -1,3 +1,4 @@
+import Logo from "../assets/Logo.png"
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import {
@@ -40,7 +41,7 @@ export default function Example() {
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600" alt="" />
+            <img className="h-8 w-auto" src={Logo} alt="" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -95,15 +96,15 @@ export default function Example() {
             </Transition>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/dietplan" className="text-sm font-semibold leading-6 text-gray-900">
             Dietplan
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          </Link>
+          <Link to="/about" className="text-sm font-semibold leading-6 text-gray-900">
             About
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          </Link>
+          <Link to="/contact" className="text-sm font-semibold leading-6 text-gray-900">
             Contact
-          </a>
+          </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         <div>

@@ -12,6 +12,8 @@ import BmiCalculator from "./pages/BMI";
 import NotFound from "./pages/NotFound";
 import BMR from "./pages/BMR";
 import BodyFatCalculator from "./pages/BodyFat";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   const navigate = useNavigate();
@@ -52,6 +54,8 @@ function App() {
         <Route path="/bmi" element={<BmiCalculator />} />
         <Route path="/bmr" element={<BMR />} />
         <Route path="/bodyfat" element={<BodyFatCalculator />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* <Route path="/dietplan" element={<Dietplan />} /> */}
 
