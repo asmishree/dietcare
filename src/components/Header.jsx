@@ -13,7 +13,7 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
-const calculater = [
+const calculators = [
   { name: 'BMI Calculator', description: 'Calculation of your Body Ratio', href: '/bmi', icon: ChartPieIcon },
   { name: 'BMR Calculator', description: 'Calculate your Basal Metabolic Rate', href: '/bmr', icon: CursorArrowRaysIcon },
   { name: 'Body Fat', description: 'Estimate your total Body Fat Content ', href: '/bodyfat', icon: FingerPrintIcon },
@@ -57,7 +57,7 @@ export default function Example() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-            calculators
+            Calculators
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
@@ -72,7 +72,7 @@ export default function Example() {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  {calculator.map((item) => (
+                  {calculators.map((item) => (
                     <div
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
