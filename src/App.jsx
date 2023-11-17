@@ -14,6 +14,7 @@ import BMR from "./pages/BMR";
 import BodyFatCalculator from "./pages/BodyFat";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Dietplan from "./pages/Dietplan";
 
 function App() {
   const navigate = useNavigate();
@@ -56,8 +57,7 @@ function App() {
         <Route path="/bodyfat" element={<BodyFatCalculator />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-
-        {/* <Route path="/dietplan" element={<Dietplan />} /> */}
+         <Route path="/dietplan" element={<Dietplan />} /> 
 
         <Route path="*" element={<NotFound/>} />
       </Routes>
