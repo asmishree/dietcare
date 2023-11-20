@@ -9,12 +9,18 @@ function BmiCalculator() {
   const [bmi, setBmi] = useState(null);
   const [idealWeight, setIdealWeight] = useState(null);
   const [bmiCategory, setBmiCategory] = useState("");
+  
   const calculateBmi = () => {
+    
     if (!height || !weight ||!age) {
       toast.error("Please enter all fields.");
       return;
+    }   
+    if (height <= 0 || weight <=0 || age<=0) {
+      toast.error('Invalid Value.');
+      return;
     }
-
+   
     const heightInMeters = height / 100;
 
     const calculatedBmi = weight / (heightInMeters * heightInMeters);

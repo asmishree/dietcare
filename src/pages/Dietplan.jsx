@@ -14,6 +14,10 @@ const Dietplan = () => {
       toast.error('Please enter all fields.');
       return;
     }
+    if (bmr <= 0) {
+      toast.error('Invalid Value.');
+      return;
+    }
 
     try {
       const response = await axios.get(`${API}/diet/shortby`, {

@@ -14,6 +14,11 @@ const BMRCalculator = () => {
         toast.error('Please enter all fields.');
         return;
       }
+      if (height <= 0 || weight <=0 || age<=0) {
+        toast.error('Invalid Value.');
+        return;
+      }
+     
 
     const bmr =
       gender === 'male'

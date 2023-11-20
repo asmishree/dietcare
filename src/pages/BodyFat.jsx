@@ -13,6 +13,12 @@ const BodyFatCalculator = () => {
         toast.error('Please enter all fields.')
         return;
       }
+      if (height <= 0 || weight <=0 || age<=0) {
+        toast.error('Invalid Value.');
+        return;
+      }
+     
+
     const weightValue = parseFloat(weight);
     const heightValue = parseFloat(height);
     const ageValue = parseFloat(age);
