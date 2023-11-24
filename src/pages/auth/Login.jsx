@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import {FcGoogle} from 'react-icons/fc'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import API from '../../API';
+
+import { GoogleLogin } from '@react-oauth/google';
 
 function Login() {
     let navigate = useNavigate();
@@ -34,6 +35,8 @@ function Login() {
       toast.error(data.message);
     }
   };
+
+
   return (
     <div className="flex flex-col justify-center flex-1 px-4 py-12 overflow-hidden sm:px-6 lg:flex-none lg:px-20 xl:px-24">
     <div className="w-full max-w-xl mx-auto lg:w-96">
@@ -82,12 +85,29 @@ function Login() {
                     </div>
                 </div>
                 <div>
-                    <button type="submit" className="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        <div className="flex items-center justify-center">
-                            <FcGoogle className="text-2xl"/>
-                            <span className="ml-4"> Login with Google</span>
-                        </div>
-                    </button>
+                <div className='flex justify-center'>
+                <GoogleLogin
+              useOneTap
+              onSuccess={async (credentialResponse) => {
+                console.log(credentialResponse)
+                const response = await axios.post(
+                  `${API}/users/login-google`,
+                  {
+                    token: credentialResponse.credential,
+                  }
+                );
+                const data = response.data;
+
+                localStorage.setItem('authToken', JSON.stringify(data.authToken));
+                navigate("/");
+                toast.success(data.message);
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
+                </div>
+                 
                     <div className="flex my-5 justify-center font-semibold">Don't have an account?<Link to="/signup" className="mx-2 text-blue-600 cursor-pointer">SignUp</Link></div>
                 </div>
             </div>

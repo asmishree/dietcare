@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../../API";
+import { GoogleLogin } from "@react-oauth/google";
 
 function SignUp() {
   let navigate = useNavigate();
@@ -153,15 +154,28 @@ function SignUp() {
               </div>
             </div>
             <div>
-              <button
-                type="submit"
-                className="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-              >
-                <div className="flex items-center justify-center">
-                  <FcGoogle className="text-2xl" />
-                  <span className="ml-4"> Signup with Google</span>
+            <div className='flex justify-center'>
+                <GoogleLogin
+              useOneTap
+              onSuccess={async (credentialResponse) => {
+                console.log(credentialResponse)
+                const response = await axios.post(
+                  `${API}/users/login-google`,
+                  {
+                    token: credentialResponse.credential,
+                  }
+                );
+                const data = response.data;
+
+                localStorage.setItem('authToken', JSON.stringify(data.authToken));
+                navigate("/");
+                toast.success(data.message);
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
                 </div>
-              </button>
               <div className="flex my-5 justify-center font-semibold">
                 Already have an account?
                 <Link
