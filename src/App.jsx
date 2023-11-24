@@ -15,7 +15,6 @@ import BodyFatCalculator from "./pages/BodyFat";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Dietplan from "./pages/Dietplan";
-
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
